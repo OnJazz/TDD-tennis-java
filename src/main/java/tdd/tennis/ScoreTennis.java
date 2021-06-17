@@ -1,20 +1,36 @@
 package tdd.tennis;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Représente le score d'un joueur de tennis.
  * @author Killian
  *
  */
-@Data
+
 public class ScoreTennis {
 
+	@Getter
 	private int point;
+	@Getter
+	@Setter
 	private int jeux;
+	
+	@Getter
+	@Setter
 	private int set;
+	
+	@Getter
 	private int match;
+	
+	@Getter
+	@Setter
 	private boolean avantage;
+	
+	@Getter
+	@Setter
 	private boolean decisif;
 
 	

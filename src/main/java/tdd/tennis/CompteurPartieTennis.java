@@ -8,7 +8,6 @@ package tdd.tennis;
  *
  */
 public class CompteurPartieTennis {
-	
 
 	/**
 	 * Cette Methode permet de créer une nouvelle partie de tennis. Une partie
@@ -30,7 +29,7 @@ public class CompteurPartieTennis {
 	 * @return La partie avec les nouveaux scores.
 	 */
 	public PartieDeTennis joueurGagne(PartieDeTennis partie, JoueurDeTennis gagnant) {
-		if(!partie.isFini()) {
+		if (!partie.isFini()) {
 			if (egalite(partie)) {
 				partie = updateAvantage(partie, gagnant);
 			} else {
@@ -39,20 +38,22 @@ public class CompteurPartieTennis {
 		}
 		return partieFini(partie);
 	}
-	
+
 	/**
 	 * Return si la partie est fini ou non
+	 * 
 	 * @param partie une partie de tennis
 	 * @return un boolean
 	 */
 	public PartieDeTennis partieFini(PartieDeTennis partie) {
-		if(partie.getScoreJoueur1().getMatch() == 1 || partie.getScoreJoueur2().getMatch()==1)
+		if (partie.getScoreJoueur1().getMatch() == 1 || partie.getScoreJoueur2().getMatch() == 1)
 			partie.setFini(true);
 		return partie;
 	}
 
 	/**
 	 * regarde si egalite a 40 point
+	 * 
 	 * @param partie
 	 * @return un boolean
 	 */
@@ -62,7 +63,8 @@ public class CompteurPartieTennis {
 
 	/**
 	 * mets l'avantage au joueur gagnant
-	 * @param partie une partie de tennis
+	 * 
+	 * @param partie  une partie de tennis
 	 * @param gagnant le joueur gagnant
 	 * @return la partie mise a jour
 	 */
@@ -74,37 +76,40 @@ public class CompteurPartieTennis {
 		}
 		return partie;
 	}
-	
+
 	/**
 	 * gere les avantages quand le joueur 1 a gagné
+	 * 
 	 * @param partie une partie de tennis
 	 * @return une partie de tennis
 	 */
 	public PartieDeTennis updateAvantageJoueur1(PartieDeTennis partie) {
-		if(partie.getScoreJoueur1().isAvantage()) {
+		if (partie.getScoreJoueur1().isAvantage()) {
 			partie = Joueur1gagneUnJeu(partie);
 		}
 		partie.getScoreJoueur1().setAvantage(true);
 		partie.getScoreJoueur2().setAvantage(false);
 		return partie;
 	}
-	
+
 	/**
 	 * gere les avantages quand le joueur 2 a gagné
+	 * 
 	 * @param partie une partie de tennis
 	 * @return une partie de tennis
 	 */
 	public PartieDeTennis updateAvantageJoueur2(PartieDeTennis partie) {
-		if(partie.getScoreJoueur2().isAvantage()) {
+		if (partie.getScoreJoueur2().isAvantage()) {
 			partie = Joueur2gagneUnJeu(partie);
 		}
 		partie.getScoreJoueur2().setAvantage(true);
 		partie.getScoreJoueur1().setAvantage(false);
 		return partie;
 	}
-	
+
 	/**
 	 * reset les points des 2 joueurs a zero
+	 * 
 	 * @param partie une partie de tennis
 	 * @return une partie de tennis
 	 */
@@ -113,25 +118,27 @@ public class CompteurPartieTennis {
 		partie.getScoreJoueur2().resetPoint();
 		return partie;
 	}
-	
+
 	/**
 	 * Mets les points au joueurs gagnant
-	 * @param partie une partie de tennis
+	 * 
+	 * @param partie  une partie de tennis
 	 * @param gagnant le joueur gagnant
 	 * @return la partie mise a jour
 	 */
 	public PartieDeTennis updatePoint(PartieDeTennis partie, JoueurDeTennis gagnant) {
 		if (gagnant.equals(partie.getJoueur1())) {
 			partie.getScoreJoueur1().updateScore(partie.getScoreJoueur2());
-			
+
 		} else {
 			partie.getScoreJoueur2().updateScore(partie.getScoreJoueur1());
 		}
 		return partie;
 	}
-	
+
 	/**
 	 * Joueur 2 gagne un jeu
+	 * 
 	 * @param partie une partie de tennis
 	 * @return une partie de tennis
 	 */
@@ -140,9 +147,10 @@ public class CompteurPartieTennis {
 		partie = resetPoints(partie);
 		return partie;
 	}
-	
+
 	/**
 	 * Joueur 1 gagne une jeu
+	 * 
 	 * @param partie partie' de tennis
 	 * @return une partie de tennis
 	 */

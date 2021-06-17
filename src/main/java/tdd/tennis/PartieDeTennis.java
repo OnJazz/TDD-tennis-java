@@ -1,6 +1,7 @@
 package tdd.tennis;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Cette classe represente une partie de tennis entre deux joueur avec leurs scores.
@@ -8,16 +9,21 @@ import lombok.Data;
  *
  */
 
-@Data
+
 public class PartieDeTennis {
 	
+	@Getter
+	@Setter
 	private boolean fini;
 
-	
+	@Getter
 	private JoueurDeTennis joueur1;
+	@Getter
 	private JoueurDeTennis joueur2;
 	
+	@Getter
 	private ScoreTennis scoreJoueur1;
+	@Getter
 	private ScoreTennis scoreJoueur2;
 	
 	public PartieDeTennis(JoueurDeTennis joueur1, JoueurDeTennis joueur2, ScoreTennis scoreJoueur1,
