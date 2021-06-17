@@ -247,6 +247,19 @@ class CompteurPartieTennisTest {
 		partie = cptPartieTennis.joueurGagne(partie, joueur1);
 		assertEquals(partie.getScoreJoueur1().getPoint(), score1avant);	
 	}
+	@Test
+	@DisplayName("L'utilisateur doit être avertie que la partie est finie")
+	public void test_nouvellePartie_isFinish() {
+		PartieDeTennis partie  = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		partie.getScoreJoueur1().setSet(1);
+		partie.getScoreJoueur1().setJeux(6);
+		partie.getScoreJoueur2().setJeux(5);
+		for(int i=0;i<4;i++)
+			partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		assertTrue(partie.isFini());	
+	}
+	
+	
 	
 	
 	

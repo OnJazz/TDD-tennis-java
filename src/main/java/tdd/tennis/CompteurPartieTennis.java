@@ -8,6 +8,7 @@ package tdd.tennis;
  *
  */
 public class CompteurPartieTennis {
+	
 
 	/**
 	 * Cette Methode permet de créer une nouvelle partie de tennis. Une partie
@@ -29,14 +30,14 @@ public class CompteurPartieTennis {
 	 * @return La partie avec les nouveaux scores.
 	 */
 	public PartieDeTennis joueurGagne(PartieDeTennis partie, JoueurDeTennis gagnant) {
-		if(!partieFini(partie)) {
+		if(!partie.isFini()) {
 			if (egalite(partie)) {
 				partie = updateAvantage(partie, gagnant);
 			} else {
 				partie = updatePoint(partie, gagnant);
 			}
 		}
-		return partie;
+		return partieFini(partie);
 	}
 	
 	/**
@@ -44,8 +45,10 @@ public class CompteurPartieTennis {
 	 * @param partie une partie de tennis
 	 * @return un boolean
 	 */
-	public boolean partieFini(PartieDeTennis partie) {
-		return partie.getScoreJoueur1().getMatch() == 1 || partie.getScoreJoueur2().getMatch()==1;
+	public PartieDeTennis partieFini(PartieDeTennis partie) {
+		if(partie.getScoreJoueur1().getMatch() == 1 || partie.getScoreJoueur2().getMatch()==1)
+			partie.setFini(true);
+		return partie;
 	}
 
 	/**
