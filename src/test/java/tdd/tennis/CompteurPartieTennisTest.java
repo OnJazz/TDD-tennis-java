@@ -13,12 +13,12 @@ class CompteurPartieTennisTest {
 	
 	public PartieDeTennis initEgalite() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
-		partie = cptPartieTennis.joueurGagne(partie, joueur1);
-		partie = cptPartieTennis.joueurGagne(partie, joueur1);
-		partie = cptPartieTennis.joueurGagne(partie, joueur1);
-		partie = cptPartieTennis.joueurGagne(partie, joueur2);
-		partie = cptPartieTennis.joueurGagne(partie, joueur2);
-		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		for(int i=0; i<3; i++) {
+			partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		}
+		for(int i=0; i<3; i++) {
+			partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		}
 		return partie;
 	}
 
