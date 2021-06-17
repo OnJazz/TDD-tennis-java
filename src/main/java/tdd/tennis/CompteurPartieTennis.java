@@ -54,9 +54,13 @@ public class CompteurPartieTennis {
 	 */
 	public PartieDeTennis updateAvantage(PartieDeTennis partie, JoueurDeTennis gagnant) {
 		if (gagnant.equals(partie.getJoueur1())) {
+			if(partie.getScoreJoueur1().isAvantage()) 
+				partie.getScoreJoueur1().updateJeux();
 			partie.getScoreJoueur1().setAvantage(true);
 			partie.getScoreJoueur2().setAvantage(false);
 		} else {
+			if(partie.getScoreJoueur2().isAvantage()) 
+				partie.getScoreJoueur2().updateJeux();
 			partie.getScoreJoueur2().setAvantage(true);
 			partie.getScoreJoueur1().setAvantage(false);
 		}

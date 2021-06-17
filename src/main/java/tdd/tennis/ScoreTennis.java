@@ -25,4 +25,8 @@ public class ScoreTennis {
 			this.point += 10;
 		}
 	}
+	
+	public void updateJeux() {
+		this.jeux+=1;
+	}
 }

@@ -75,11 +75,27 @@ class CompteurPartieTennisTest {
 	
 	@Test
 	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le perdant a un avantage, alors il le perd")
-	public void test_nouvellePartie_scoreperdAvantage() {
+	public void test_nouvellePartie_scorePerdAvantage() {
 		PartieDeTennis partie = initEgalite();
 		cptPartieTennis.joueurGagne(partie, joueur1);
 		cptPartieTennis.joueurGagne(partie, joueur2);
 		assertFalse(partie.getScoreJoueur1().isAvantage());
+	}
+	@Test
+	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
+	public void test_nouvellePartie_scoreJoueur1GagneJeu() {
+		PartieDeTennis partie = initEgalite();
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		assertEquals(partie.getScoreJoueur1().getJeux(),1);
+	}
+	@Test
+	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
+	public void test_nouvellePartie_scoreJoueur2GagneJeu() {
+		PartieDeTennis partie = initEgalite();
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		assertEquals(partie.getScoreJoueur2().getJeux(),1);
 	}
 
 }
