@@ -9,22 +9,20 @@ import lombok.Data;
  */
 @Data
 public class ScoreTennis {
+
+	private int point;
 	private int jeux;
 	private int set;
 	private int match;
-	
-	public ScoreTennis(int jeux, int set, int match) {
-		this.jeux = jeux;
-		this.set = set;
-		this.match = match;
-	}
+	private boolean avantage;
+
 	
 	public void updateScore() {
-		if(this.jeux<30) {
-			this.jeux+=15;
+		if(this.point<30) {
+			this.point+=15;
 		}
 		else {
-			this.jeux += 10;
+			this.point += 10;
 		}
 	}
 }
