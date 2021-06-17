@@ -10,6 +10,17 @@ class CompteurPartieTennisTest {
 	CompteurPartieTennis cptPartieTennis = new CompteurPartieTennis();
 	JoueurDeTennis joueur1 = new JoueurDeTennis("Vennin", "Jason");
 	JoueurDeTennis joueur2 = new JoueurDeTennis("Raoux", "Kilian");
+	
+	public PartieDeTennis initEgalite() {
+		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		return partie;
+	}
 
 
 	@Test
@@ -49,35 +60,26 @@ class CompteurPartieTennisTest {
 	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si aucun joueur a un avantage,"
 			+ " le joueur qui gagne le point gagne un avantage")
 	public void test_nouvellePartie_scoreAvantageJoueur2() {
-		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		
+		PartieDeTennis partie = initEgalite();
 		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		
 		assertTrue(partie.getScoreJoueur2().isAvantage());
-		
 	}
 	@Test
 	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si aucun joueur a un avantage,"
 			+ " le joueur qui gagne le point gagne un avantage")
 	public void test_nouvellePartie_scoreAvantageJoueur1() {
-		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		PartieDeTennis partie = initEgalite();
 		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		
 		assertTrue(partie.getScoreJoueur1().isAvantage());
-		
+	}
+	
+	@Test
+	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le perdant a un avantage, alors il le perd")
+	public void test_nouvellePartie_scoreperdAvantage() {
+		PartieDeTennis partie = initEgalite();
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		assertFalse(partie.getScoreJoueur1().isAvantage());
 	}
 
 }
