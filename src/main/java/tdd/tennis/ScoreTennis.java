@@ -66,6 +66,9 @@ public class ScoreTennis {
 	
 	public void updateSet() {
 		this.set += 1;
+		if(set>=2) {
+			this.match =1;
+		}
 	}
 	
 	public void resetPoint() {

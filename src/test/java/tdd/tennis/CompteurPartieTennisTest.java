@@ -222,6 +222,17 @@ class CompteurPartieTennisTest {
 		partie = cptPartieTennis.joueurGagne(partie, joueur1);
 		assertEquals(1, partie.getScoreJoueur1().getSet());	
 	}
+	@Test
+	@DisplayName("Le premier joueur a 2 sets gagnés gagne la partie.")
+	public void test_nouvellePartie_2SetWin() {
+		PartieDeTennis partie  = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		partie.getScoreJoueur1().setSet(1);
+		partie.getScoreJoueur1().setJeux(6);
+		partie.getScoreJoueur2().setJeux(5);
+		for(int i=0;i<4;i++)
+			partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		assertEquals(1, partie.getScoreJoueur1().getMatch());	
+	}
 	
 	
 	

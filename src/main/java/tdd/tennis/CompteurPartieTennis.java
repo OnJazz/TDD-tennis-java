@@ -36,6 +36,15 @@ public class CompteurPartieTennis {
 		}
 		return partie;
 	}
+	
+	/**
+	 * Return si la partie est fini ou non
+	 * @param partie une partie de tennis
+	 * @return un boolean
+	 */
+	public boolean partieFini(PartieDeTennis partie) {
+		return partie.getScoreJoueur1().getMatch() == 1 || partie.getScoreJoueur2().getMatch()==1;
+	}
 
 	/**
 	 * regarde si egalite a 40 point
