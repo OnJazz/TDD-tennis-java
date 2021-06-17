@@ -97,5 +97,15 @@ class CompteurPartieTennisTest {
 		cptPartieTennis.joueurGagne(partie, joueur2);
 		assertEquals(partie.getScoreJoueur2().getJeux(),1);
 	}
+	
+	@Test
+	@DisplayName("Quand un jeu est gagné, alors les deux joueurs retournent à 0 point")
+	public void test_nouvellePartie_0pointApresJeu() {
+		PartieDeTennis partie = initEgalite();
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		cptPartieTennis.joueurGagne(partie, joueur2);
+		assertEquals(0, partie.getScoreJoueur1().getPoint());
+		assertEquals(0, partie.getScoreJoueur2().getPoint());
+	}
 
 }

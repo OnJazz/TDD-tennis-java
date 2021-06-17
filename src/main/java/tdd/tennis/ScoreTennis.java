@@ -29,4 +29,8 @@ public class ScoreTennis {
 	public void updateJeux() {
 		this.jeux+=1;
 	}
+	
+	public void resetPoint() {
+		this.point = 0;
+	}
 }
