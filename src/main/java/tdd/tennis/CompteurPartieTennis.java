@@ -29,10 +29,12 @@ public class CompteurPartieTennis {
 	 * @return La partie avec les nouveaux scores.
 	 */
 	public PartieDeTennis joueurGagne(PartieDeTennis partie, JoueurDeTennis gagnant) {
-		if (egalite(partie)) {
-			partie = updateAvantage(partie, gagnant);
-		} else {
-			partie = updatePoint(partie, gagnant);
+		if(!partieFini(partie)) {
+			if (egalite(partie)) {
+				partie = updateAvantage(partie, gagnant);
+			} else {
+				partie = updatePoint(partie, gagnant);
+			}
 		}
 		return partie;
 	}

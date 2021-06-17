@@ -234,6 +234,20 @@ class CompteurPartieTennisTest {
 		assertEquals(1, partie.getScoreJoueur1().getMatch());	
 	}
 	
+	@Test
+	@DisplayName("Quand un joueur a gagné, il n'est plus possible de changer les scores")
+	public void test_nouvellePartie_CantScoreWin() {
+		PartieDeTennis partie  = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		partie.getScoreJoueur1().setSet(1);
+		partie.getScoreJoueur1().setJeux(6);
+		partie.getScoreJoueur2().setJeux(5);
+		for(int i=0;i<4;i++)
+			partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		int score1avant = partie.getScoreJoueur1().getPoint();
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		assertEquals(partie.getScoreJoueur1().getPoint(), score1avant);	
+	}
+	
 	
 	
 }
