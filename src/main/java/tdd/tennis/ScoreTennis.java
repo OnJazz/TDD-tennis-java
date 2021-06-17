@@ -15,9 +15,19 @@ public class ScoreTennis {
 	private int set;
 	private int match;
 	private boolean avantage;
+	private boolean decisif;
 
 	
 	public void updateScore() {
+		if(decisif) {
+			this.point += 1;
+		}
+		else {
+			updateScoreNotDecisif();
+		}
+		
+	}
+	public void updateScoreNotDecisif() {
 		if(this.point<30) {
 			this.point+=15;
 		}
@@ -30,6 +40,10 @@ public class ScoreTennis {
 		this.jeux+=1;
 		if(this.jeux == 6 && scoreAdverse.getJeux()<=4) {
 			this.updateSet();
+		}
+		if(this.jeux == 6 && scoreAdverse.getJeux()==6) {
+			this.decisif = true;
+			scoreAdverse.setDecisif(true);
 		}
 		if(this.jeux == 7 && scoreAdverse.getJeux() == 5) {
 			this.updateSet();
