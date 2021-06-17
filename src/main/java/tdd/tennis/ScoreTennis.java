@@ -18,21 +18,31 @@ public class ScoreTennis {
 	private boolean decisif;
 
 	
-	public void updateScore() {
+	public void updateScore(ScoreTennis scoreAdverse) {
 		if(decisif) {
 			this.point += 1;
+			if(this.point>=7 && (this.point - scoreAdverse.getPoint())==2) {
+				updateJeux(scoreAdverse);
+				this.resetPoint();
+				scoreAdverse.resetPoint();
+			}
 		}
 		else {
-			updateScoreNotDecisif();
+			updateScoreNotDecisif(scoreAdverse);
 		}
 		
 	}
-	public void updateScoreNotDecisif() {
+	public void updateScoreNotDecisif(ScoreTennis scoreAdverse) {
 		if(this.point<30) {
 			this.point+=15;
 		}
 		else {
 			this.point += 10;
+		}
+		if(this.point>40) {
+			updateJeux(scoreAdverse);
+			this.resetPoint();
+			scoreAdverse.resetPoint();
 		}
 	}
 	
@@ -46,6 +56,10 @@ public class ScoreTennis {
 			scoreAdverse.setDecisif(true);
 		}
 		if(this.jeux == 7 && scoreAdverse.getJeux() == 5) {
+			this.updateSet();
+		}
+		if(this.jeux == 7 && scoreAdverse.getJeux() == 6) {
+			this.decisif = false;
 			this.updateSet();
 		}
 	}

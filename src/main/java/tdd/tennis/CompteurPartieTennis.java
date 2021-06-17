@@ -108,16 +108,10 @@ public class CompteurPartieTennis {
 	 */
 	public PartieDeTennis updatePoint(PartieDeTennis partie, JoueurDeTennis gagnant) {
 		if (gagnant.equals(partie.getJoueur1())) {
-			partie.getScoreJoueur1().updateScore();
-			if(partie.getScoreJoueur1().getPoint()>40) {
-				partie = Joueur1gagneUnJeu(partie);
-			}
+			partie.getScoreJoueur1().updateScore(partie.getScoreJoueur2());
 			
 		} else {
-			partie.getScoreJoueur2().updateScore();
-			if(partie.getScoreJoueur2().getPoint()>40) {
-				partie = Joueur2gagneUnJeu(partie);
-			}
+			partie.getScoreJoueur2().updateScore(partie.getScoreJoueur1());
 		}
 		return partie;
 	}
