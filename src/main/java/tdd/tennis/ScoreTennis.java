@@ -18,4 +18,13 @@ public class ScoreTennis {
 		this.set = set;
 		this.match = match;
 	}
+	
+	public void updateScore() {
+		if(this.jeux<30) {
+			this.jeux+=15;
+		}
+		else {
+			this.jeux += 10;
+		}
+	}
 }

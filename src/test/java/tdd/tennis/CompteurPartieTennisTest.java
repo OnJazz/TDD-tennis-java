@@ -32,7 +32,19 @@ class CompteurPartieTennisTest {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		assertEquals(new ScoreTennis(0, 0, 0), partie.getScoreJoueur1());
 		assertEquals(new ScoreTennis(0, 0, 0), partie.getScoreJoueur2());
-
 	}
+	
+	@Test
+	@DisplayName("Quand un joueur gagne un point, il passe de 0 à 15. Puis de 15 à 30. Puis de 30 à 40")
+	public void test_nouvellePartie_scoreUpdate() {
+		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		assertEquals(15,partie.getScoreJoueur1().getJeux());
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		assertEquals(30,partie.getScoreJoueur1().getJeux());
+		cptPartieTennis.joueurGagne(partie, joueur1);
+		assertEquals(40,partie.getScoreJoueur1().getJeux());
+	}
+	
 
 }

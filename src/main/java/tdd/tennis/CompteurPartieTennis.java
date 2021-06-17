@@ -25,6 +25,12 @@ public class CompteurPartieTennis {
 	 * @return La partie avec les nouveaux scores.
 	 */
 	public PartieDeTennis joueurGagne(PartieDeTennis partie, JoueurDeTennis gagnant) {
+		if(gagnant.equals(partie.getJoueur1())) {
+			partie.getScoreJoueur1().updateScore();
+		}
+		else {
+			partie.getScoreJoueur2().updateScore();
+		}
 		return partie;
 	}
 }
