@@ -1,5 +1,6 @@
 package tdd.tennis.models;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
@@ -20,13 +21,17 @@ public class PartieDeTennis {
 	private boolean fini;
 
 	@Getter
+	@DBRef
 	private JoueurDeTennis joueur1;
 	@Getter
+	@DBRef
 	private JoueurDeTennis joueur2;
 	
 	@Getter
+	@DBRef
 	private ScoreTennis scoreJoueur1;
 	@Getter
+	@DBRef
 	private ScoreTennis scoreJoueur2;
 	
 	public PartieDeTennis(JoueurDeTennis joueur1, JoueurDeTennis joueur2, ScoreTennis scoreJoueur1,

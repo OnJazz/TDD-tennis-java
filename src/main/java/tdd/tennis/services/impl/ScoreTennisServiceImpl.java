@@ -6,12 +6,12 @@ import tdd.tennis.models.ScoreTennis;
 import tdd.tennis.repositories.ScoreTennisRepository;
 import tdd.tennis.services.ScoreTennisService;
 
-public class ScoreTennisImpl extends CRUDServiceImpl<ScoreTennis> implements ScoreTennisService{
+public class ScoreTennisServiceImpl extends CRUDServiceImpl<ScoreTennis> implements ScoreTennisService{
 
 	
 	private ScoreTennisRepository repo;
 	
-	public ScoreTennisImpl(ScoreTennisRepository repo) {
+	public ScoreTennisServiceImpl(ScoreTennisRepository repo) {
 		super(repo);
 		this.repo = repo;
 	}
