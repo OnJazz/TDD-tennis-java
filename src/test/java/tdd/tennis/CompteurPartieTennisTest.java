@@ -13,12 +13,12 @@ class CompteurPartieTennisTest {
 	
 	public PartieDeTennis initEgalite() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
 		return partie;
 	}
 
@@ -49,11 +49,11 @@ class CompteurPartieTennisTest {
 	@DisplayName("Quand un joueur gagne un point, il passe de 0 à 15. Puis de 15 à 30. Puis de 30 à 40")
 	public void test_nouvellePartie_scoreUpdate() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
 		assertEquals(15,partie.getScoreJoueur1().getPoint());
-		cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
 		assertEquals(30,partie.getScoreJoueur1().getPoint());
-		cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
 		assertEquals(40,partie.getScoreJoueur1().getPoint());
 	}
 	@Test
@@ -61,7 +61,7 @@ class CompteurPartieTennisTest {
 			+ " le joueur qui gagne le point gagne un avantage")
 	public void test_nouvellePartie_scoreAvantageJoueur2() {
 		PartieDeTennis partie = initEgalite();
-		cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
 		assertTrue(partie.getScoreJoueur2().isAvantage());
 	}
 	@Test
@@ -69,7 +69,7 @@ class CompteurPartieTennisTest {
 			+ " le joueur qui gagne le point gagne un avantage")
 	public void test_nouvellePartie_scoreAvantageJoueur1() {
 		PartieDeTennis partie = initEgalite();
-		cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
 		assertTrue(partie.getScoreJoueur1().isAvantage());
 	}
 	
@@ -77,24 +77,24 @@ class CompteurPartieTennisTest {
 	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le perdant a un avantage, alors il le perd")
 	public void test_nouvellePartie_scorePerdAvantage() {
 		PartieDeTennis partie = initEgalite();
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
 		assertFalse(partie.getScoreJoueur1().isAvantage());
 	}
 	@Test
 	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
 	public void test_nouvellePartie_scoreJoueur1GagneJeu() {
 		PartieDeTennis partie = initEgalite();
-		cptPartieTennis.joueurGagne(partie, joueur1);
-		cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
 		assertEquals(partie.getScoreJoueur1().getJeux(),1);
 	}
 	@Test
 	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
 	public void test_nouvellePartie_scoreJoueur2GagneJeu() {
 		PartieDeTennis partie = initEgalite();
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
 		assertEquals(partie.getScoreJoueur2().getJeux(),1);
 	}
 	
@@ -102,10 +102,51 @@ class CompteurPartieTennisTest {
 	@DisplayName("Quand un jeu est gagné, alors les deux joueurs retournent à 0 point")
 	public void test_nouvellePartie_0pointApresJeu() {
 		PartieDeTennis partie = initEgalite();
-		cptPartieTennis.joueurGagne(partie, joueur2);
-		cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
 		assertEquals(0, partie.getScoreJoueur1().getPoint());
 		assertEquals(0, partie.getScoreJoueur2().getPoint());
 	}
+	
+	@Test
+	@DisplayName("Quand un joueur arrive à gagner 6 jeux et que son adversaire 4 ou moins jeux gagnés, alors le joueur gagne un set")
+	public void test_nouvellePartie_gagneUnSetJoueur1() {
+		PartieDeTennis partie  = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		partie.getScoreJoueur1().setJeux(5);
+		partie.getScoreJoueur2().setJeux(4);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		partie = cptPartieTennis.joueurGagne(partie, joueur1);
+		assertEquals(1, partie.getScoreJoueur1().getSet());	
+	}
+	
+	@Test
+	@DisplayName("Quand un joueur arrive à gagner 6 jeux et que son adversaire 4 ou moins jeux gagnés, alors le joueur gagne un set")
+	public void test_nouvellePartie_gagneUnSetJoueur2() {
+		PartieDeTennis partie  = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		partie.getScoreJoueur1().setJeux(4);
+		partie.getScoreJoueur2().setJeux(5);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		assertEquals(1, partie.getScoreJoueur2().getSet());	
+	}
+	
+	@Test
+	@DisplayName("Quand les deux joueurs ont 5 points alors faut avoir 2 points d'avance et 7 jeux pour gagner le set")
+	public void test_nouvellePartie_gagneSet5v7() {
+		PartieDeTennis partie  = cptPartieTennis.nouvellePartie(joueur1, joueur2);
+		partie.getScoreJoueur1().setJeux(5);
+		partie.getScoreJoueur2().setJeux(6);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		partie = cptPartieTennis.joueurGagne(partie, joueur2);
+		assertEquals(1, partie.getScoreJoueur2().getSet());	
+	}
+	
+	
 
 }

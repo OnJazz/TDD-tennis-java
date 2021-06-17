@@ -68,8 +68,7 @@ public class CompteurPartieTennis {
 	 */
 	public PartieDeTennis updateAvantageJoueur1(PartieDeTennis partie) {
 		if(partie.getScoreJoueur1().isAvantage()) {
-			partie.getScoreJoueur1().updateJeux();
-			partie = resetPoints(partie);
+			partie = Joueur1gagneUnJeu(partie);
 		}
 		partie.getScoreJoueur1().setAvantage(true);
 		partie.getScoreJoueur2().setAvantage(false);
@@ -83,8 +82,7 @@ public class CompteurPartieTennis {
 	 */
 	public PartieDeTennis updateAvantageJoueur2(PartieDeTennis partie) {
 		if(partie.getScoreJoueur2().isAvantage()) {
-			partie.getScoreJoueur2().updateJeux();
-			partie = resetPoints(partie);
+			partie = Joueur2gagneUnJeu(partie);
 		}
 		partie.getScoreJoueur2().setAvantage(true);
 		partie.getScoreJoueur1().setAvantage(false);
@@ -111,9 +109,38 @@ public class CompteurPartieTennis {
 	public PartieDeTennis updatePoint(PartieDeTennis partie, JoueurDeTennis gagnant) {
 		if (gagnant.equals(partie.getJoueur1())) {
 			partie.getScoreJoueur1().updateScore();
+			if(partie.getScoreJoueur1().getPoint()>40) {
+				partie = Joueur1gagneUnJeu(partie);
+			}
+			
 		} else {
 			partie.getScoreJoueur2().updateScore();
+			if(partie.getScoreJoueur2().getPoint()>40) {
+				partie = Joueur2gagneUnJeu(partie);
+			}
 		}
+		return partie;
+	}
+	
+	/**
+	 * Joueur 2 gagne un jeu
+	 * @param partie une partie de tennis
+	 * @return une partie de tennis
+	 */
+	public PartieDeTennis Joueur2gagneUnJeu(PartieDeTennis partie) {
+		partie.getScoreJoueur2().updateJeux(partie.getScoreJoueur1());
+		partie = resetPoints(partie);
+		return partie;
+	}
+	
+	/**
+	 * Joueur 1 gagne une jeu
+	 * @param partie partie' de tennis
+	 * @return une partie de tennis
+	 */
+	public PartieDeTennis Joueur1gagneUnJeu(PartieDeTennis partie) {
+		partie.getScoreJoueur1().updateJeux(partie.getScoreJoueur2());
+		partie = resetPoints(partie);
 		return partie;
 	}
 }
