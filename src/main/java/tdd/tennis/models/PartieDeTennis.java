@@ -1,4 +1,6 @@
-package tdd.tennis;
+package tdd.tennis.models;
+
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,9 +11,10 @@ import lombok.Setter;
  *
  */
 
-
+@Document
 public class PartieDeTennis {
 	
+	private String id;
 	@Getter
 	@Setter
 	private boolean fini;

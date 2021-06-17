@@ -1,5 +1,9 @@
 package tdd.tennis;
 
+import tdd.tennis.models.JoueurDeTennis;
+import tdd.tennis.models.PartieDeTennis;
+import tdd.tennis.models.ScoreTennis;
+
 /**
  * Cette classe contient tout le code permettant de calculer les points au
  * tennis.
@@ -10,7 +14,7 @@ package tdd.tennis;
 public class CompteurPartieTennis {
 
 	/**
-	 * Cette Methode permet de créer une nouvelle partie de tennis. Une partie
+	 * Cette Methode permet de crï¿½er une nouvelle partie de tennis. Une partie
 	 * contient 2 joueurs et 2 Scores Au debut de la partie, les score sont a 0.
 	 * 
 	 * @param joueur1 premier joueur de la partie
@@ -78,7 +82,7 @@ public class CompteurPartieTennis {
 	}
 
 	/**
-	 * gere les avantages quand le joueur 1 a gagné
+	 * gere les avantages quand le joueur 1 a gagnï¿½
 	 * 
 	 * @param partie une partie de tennis
 	 * @return une partie de tennis
@@ -93,7 +97,7 @@ public class CompteurPartieTennis {
 	}
 
 	/**
-	 * gere les avantages quand le joueur 2 a gagné
+	 * gere les avantages quand le joueur 2 a gagnï¿½
 	 * 
 	 * @param partie une partie de tennis
 	 * @return une partie de tennis

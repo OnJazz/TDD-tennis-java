@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import tdd.tennis.models.JoueurDeTennis;
+import tdd.tennis.models.PartieDeTennis;
+
 class CompteurPartieTennisTest {
 
 	CompteurPartieTennis cptPartieTennis = new CompteurPartieTennis();
@@ -23,7 +26,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("un utilisateur peut créer une nouvelle partie")
+	@DisplayName("un utilisateur peut crï¿½er une nouvelle partie")
 	public void test_nouvellePartie_retournePartie() {
 		assertTrue(cptPartieTennis.nouvellePartie(null, null) instanceof PartieDeTennis);
 	}
@@ -45,7 +48,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Quand un joueur gagne un point, il passe de 0 à 15. Puis de 15 à 30. Puis de 30 à 40")
+	@DisplayName("Quand un joueur gagne un point, il passe de 0 ï¿½ 15. Puis de 15 ï¿½ 30. Puis de 30 ï¿½ 40")
 	public void test_nouvellePartie_scoreUpdate() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie = cptPartieTennis.joueurGagne(partie, joueur1);
@@ -57,7 +60,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si aucun joueur a un avantage,"
+	@DisplayName("Si les deux joueurs sont a egalitï¿½ a 40 points, si aucun joueur a un avantage,"
 			+ " le joueur qui gagne le point gagne un avantage")
 	public void test_nouvellePartie_scoreAvantageJoueur2() {
 		PartieDeTennis partie = initEgalite();
@@ -66,7 +69,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si aucun joueur a un avantage,"
+	@DisplayName("Si les deux joueurs sont a egalitï¿½ a 40 points, si aucun joueur a un avantage,"
 			+ " le joueur qui gagne le point gagne un avantage")
 	public void test_nouvellePartie_scoreAvantageJoueur1() {
 		PartieDeTennis partie = initEgalite();
@@ -75,7 +78,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le perdant a un avantage, alors il le perd")
+	@DisplayName("Si les deux joueurs sont a egalitï¿½ a 40 points, si le perdant a un avantage, alors il le perd")
 	public void test_nouvellePartie_scorePerdAvantage() {
 		PartieDeTennis partie = initEgalite();
 		partie = cptPartieTennis.joueurGagne(partie, joueur1);
@@ -84,7 +87,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
+	@DisplayName("Si les deux joueurs sont a egalitï¿½ a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
 	public void test_nouvellePartie_scoreJoueur1GagneJeu() {
 		PartieDeTennis partie = initEgalite();
 		partie = cptPartieTennis.joueurGagne(partie, joueur1);
@@ -93,7 +96,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Si les deux joueurs sont a egalité a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
+	@DisplayName("Si les deux joueurs sont a egalitï¿½ a 40 points, si le gagnant a un avantage, alors il gagne le jeu.")
 	public void test_nouvellePartie_scoreJoueur2GagneJeu() {
 		PartieDeTennis partie = initEgalite();
 		partie = cptPartieTennis.joueurGagne(partie, joueur2);
@@ -102,7 +105,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Quand un jeu est gagné, alors les deux joueurs retournent à 0 point")
+	@DisplayName("Quand un jeu est gagnï¿½, alors les deux joueurs retournent ï¿½ 0 point")
 	public void test_nouvellePartie_0pointApresJeu() {
 		PartieDeTennis partie = initEgalite();
 		partie = cptPartieTennis.joueurGagne(partie, joueur2);
@@ -112,7 +115,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Quand un joueur arrive à gagner 6 jeux et que son adversaire 4 ou moins jeux gagnés, alors le joueur gagne un set")
+	@DisplayName("Quand un joueur arrive ï¿½ gagner 6 jeux et que son adversaire 4 ou moins jeux gagnï¿½s, alors le joueur gagne un set")
 	public void test_nouvellePartie_gagneUnSetJoueur1() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setJeux(5);
@@ -125,7 +128,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Quand un joueur arrive à gagner 6 jeux et que son adversaire 4 ou moins jeux gagnés, alors le joueur gagne un set")
+	@DisplayName("Quand un joueur arrive ï¿½ gagner 6 jeux et que son adversaire 4 ou moins jeux gagnï¿½s, alors le joueur gagne un set")
 	public void test_nouvellePartie_gagneUnSetJoueur2() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setJeux(4);
@@ -151,7 +154,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Quand les deux joueurs ont 6 jeux gagné, alors on passe en jeux decisif")
+	@DisplayName("Quand les deux joueurs ont 6 jeux gagnï¿½, alors on passe en jeux decisif")
 	public void test_nouvellePartie_JeuxDecisif() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setJeux(5);
@@ -165,7 +168,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Quand il y a jeu décisif les points sont compté par point")
+	@DisplayName("Quand il y a jeu dï¿½cisif les points sont comptï¿½ par point")
 	public void test_nouvellePartie_JeuxDecisifPoint() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setJeux(6);
@@ -183,7 +186,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Si un joueur gagne un point pendant un jeu decisif il passe de 0 à 1, puis 2, ... jusqu'à 7")
+	@DisplayName("Si un joueur gagne un point pendant un jeu decisif il passe de 0 ï¿½ 1, puis 2, ... jusqu'ï¿½ 7")
 	public void test_nouvellePartie_JeuxDecisifPointJusque7() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setJeux(6);
@@ -229,7 +232,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Le premier joueur a 2 sets gagnés gagne la partie.")
+	@DisplayName("Le premier joueur a 2 sets gagnï¿½s gagne la partie.")
 	public void test_nouvellePartie_2SetWin() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setSet(1);
@@ -241,7 +244,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("Quand un joueur a gagné, il n'est plus possible de changer les scores")
+	@DisplayName("Quand un joueur a gagnï¿½, il n'est plus possible de changer les scores")
 	public void test_nouvellePartie_CantScoreWin() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setSet(1);
@@ -255,7 +258,7 @@ class CompteurPartieTennisTest {
 	}
 
 	@Test
-	@DisplayName("L'utilisateur doit être avertie que la partie est finie")
+	@DisplayName("L'utilisateur doit ï¿½tre avertie que la partie est finie")
 	public void test_nouvellePartie_isFinish() {
 		PartieDeTennis partie = cptPartieTennis.nouvellePartie(joueur1, joueur2);
 		partie.getScoreJoueur1().setSet(1);

@@ -1,17 +1,22 @@
-package tdd.tennis;
+package tdd.tennis.models;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
 
 /**
- * Represente un joueur de tennis. Un même joueur peut participer a plusieur
+ * Represente un joueur de tennis. Un mï¿½me joueur peut participer a plusieur
  * partie.
  * 
  * @author Killian
  *
  */
+@Document
 public class JoueurDeTennis {
-
+	
+	private String id;
 	private String nom;
 	private String prenom;
-
+	
 	public JoueurDeTennis(String nom, String prenom) {
 		super();
 		this.nom = nom;

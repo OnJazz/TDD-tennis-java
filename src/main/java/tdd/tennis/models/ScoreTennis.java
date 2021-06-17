@@ -1,18 +1,23 @@
-package tdd.tennis;
+package tdd.tennis.models;
+
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Représente le score d'un joueur de tennis.
+ * Reprï¿½sente le score d'un joueur de tennis.
  * @author Killian
  *
  */
-
+@Document
 public class ScoreTennis {
+	
+	private String id;
 
 	@Getter
+	@Setter
 	private int point;
 	@Getter
 	@Setter
@@ -23,6 +28,7 @@ public class ScoreTennis {
 	private int set;
 	
 	@Getter
+	@Setter
 	private int match;
 	
 	@Getter
